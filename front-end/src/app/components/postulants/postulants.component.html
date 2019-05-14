@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-content">
+          <form #postulantForm = "ngForm" (ngSubmit)="addPostulant(postulantForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="postulantService.selectedPostulante._id">
+            <div class="row">
+              <div class="input-field col s12">
+                <label >Nombres:</label>
+                <input type="text" name="name" #name = "ngModel"[(ngModel)]="postulantService.selectedPostulante.name" placeholder="Enter your name">
+              </div>
+              <div class="input-field col s12">
+                <label >Apellido Paterno</label>
+                <input type="text" name="apPatern" #apPatern = "ngModel"[(ngModel)]="postulantService.selectedPostulante.apPatern" placeholder="Enter your appatern">
+              </div>
+              <div class="input-field col s12">
+                <label >Apellido Materno</label>
+                <input type="text" name="apMatern" #apMatern = "ngModel"[(ngModel)]="postulantService.selectedPostulante.apMatern" placeholder="Enter your apmatern">
+              </div>
+              <div class="input-field col s12">
+                  <label >Edad:</label>  
+                <input type="text" name="edad" #edad = "ngModel"[(ngModel)]="postulantService.selectedPostulante.edad" placeholder="Enter your edad">
+              </div>
+              <div class="input-field col s12">
+                  <label >Direccion:</label>
+                <input type="text" name="address" #address = "ngModel"[(ngModel)]="postulantService.selectedPostulante.address" placeholder="Enter your address">
+              </div>
+              <div class="input-field col s12">
+                <label >Genero</label>
+                
+                  <!--mat-radio-button value = "Hombre" name="genero" #genero= "ngModel" [(ngModel)]="postulantService.selectedPostulante.genero" aria-checked="genero">Hombre</mat-radio-button>-->
+                  <input type="text" name="genero" #genero = "ngModel"[(ngModel)]="postulantService.selectedPostulante.genero" placeholder="Enter your gender">
+                
+                <!--<input type="checkbox" name="genero" #genero = "ngModel"[(ngModel)]="postulantService.selectedPostulante.genero" placeholder="Enter your gender">-->
+              </div>
+              <div class="input-field col s12">
+                  <label >Telefono:</label>
+                <input type="text" name="telefono" #telefono = "ngModel"[(ngModel)]="postulantService.selectedPostulante.telefono" placeholder="Enter your telefono">
+              </div>
+              <div class="input-field col s12">
+                  <label >E-mail:</label>
+                <input type="text" name="email" #email = "ngModel"[(ngModel)]="postulantService.selectedPostulante.email" placeholder="Enter your email">
+              </div>
+              <div >
+                  <label >Experiencia Laboral:</label>
+                <textarea  name="expLab" row="10" cols="40" #expLab = "ngModel"[(ngModel)]="postulantService.selectedPostulante.expLab">Escribe quie tu experiencia</textarea>
+              </div>
+              <div class="card-action">
+                <div class="input-field col s12">
+                  <button class="btn right" (click)="resetForm(postulantForm)">Clean</button>
+                  <button class="btn " style = "margin-left: 2px">Save</button>
+                  
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <table>
+        <thead>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Edad</th>
+          <th>Direccion</th>
+          <th>Genero</th>
+          <th>Telefono</th>
+          <th>E-Mail</th>
+          <th>expLab</th>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let postulant of postulantService.postulants">
+            <td>{{postulant.name}}</td>
+            <td>{{postulant.apPatern}}</td>
+            <td>{{postulant.apMatern}}</td>
+            <td>{{postulant.edad}}</td>
+            <td>{{postulant.address}}</td>
+            <td>{{postulant.genero}}</td>
+            <td>{{postulant.telefono}}</td>
+            <td>{{postulant.email}}</td>
+            <td>{{postulant.expLab}}</td>
+            <td>
+              <a (click)="editPostulant(postulant)">
+                <i class = "material-icons">edit</i>
+              </a>
+              <a (click)="deletePostulant(postulant._id)">
+                  <i class = "material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
